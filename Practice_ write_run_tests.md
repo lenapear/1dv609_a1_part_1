@@ -6,9 +6,10 @@ We provide Java and .js code.
 
 ## Goals
 - Practice your ability to write simple unit tests in a framework.
-  - run tests and evaluate results
-  - practice writing asserts of different types including testing exceptions are thrown
-- Write minimal test-suites that accuratly pinpoints bugs
+  - You should know how to writing unit tests
+  - You should know how to run tests and evaluate results
+  
+- Write minimal simple test-suites that accuratly pinpoints bugs
 - Practice running code coverage tool, and assess code coverage.
     - Find code not run during testing
 - Name tests to document requirements in the SUT
@@ -18,46 +19,44 @@ We provide Java and .js code.
 
 ## Course material to support
 * Developer Testing - Chapter 7 - 10
-* Testing framework online manuals
-* Lecture material
- 
+* Testing framework/tool online manuals for your framework/tools
+* Course materials week 1-2
 
 ## Task 1: Write an optimized test suite
 Write a test suite for the Password class provided. 
 
  * There are correct and buggy versions of the Password class. 
-   * The correct version is defined as correct and should not be changed.
-   * None of the tests may fail for the correct version. 
-   * For each buggy version your test suite should have at least one test that failes. One of the bugs is hard to do this for, see question.
-   * Each test should fail for at least one buggy version which no other test fails (no redundant tests)
+   * The correct version is defined as correct, and should not be changed.
+   * The buggy versions should not be changed.
+   * None of the tests you write may fail for the correct version. 
+   * For each buggy version your test suite should have at least one test that failes. 
+   * Each test should fail for at least one buggy version which no other test fails, no redundant tests!
+   * Add a new buggy version that pass all your tests
   
  * Artifacts to show during examination
    * Test suite as one file 
-   * You should be able to run all your tests against any of the correct or buggy versions. 
+   * You should be able to run all your tests against any of the correct, or buggy versions. 
    * You should be able to run code coverage 
-   * As close to 100% test coverage for all versions of the Password as possible
-   * Summary table as below, showing coverage and pass/fail for all combinations of tests & 
-   * Orally be able to answer questions about your code and the reflection questions.
-   * You should write at least one buggy version of the Password class that pass all the tests 
+   * As close to 100% test coverage for all versions of the Password as possible, (note may not always be possible)
+   * Show summary as a table as below, showing coverage and pass/fail for all combinations of tests & correct and buggy versions.
+   * Orally be able to answer questions about your code. All code must be fully understood.
+   * Orally the reflection questions.
+   * Show the buggy version that pass all your tests
 
 ### Table for checking test suite bug coverage
-| Version | Correct | Buggy 1 | Buggy 2 | Buggy 3 | ... |
+| Version | Correct | BugDoes... | Bug... | YourBuggy | ... |
 | --- | ---| --- | --- | --- | --- |
 | Test name 1 | ✅ | ❌ | ✅ | ✅ | ✅ |
 | Test name 2 | ✅ | ✅ | ❌ | ✅ | ✅ |
-| Test name 3 | ✅ | ✅ | ❌ | ❌ | ❌ |
+| Test name 3 | ✅ | ✅ | ❌ | ❌ | ✅ |
 | Coverage | 100% | 100% | 100% | 100% | 100% |
 
 
 ### Reflection Questions - You should be able to answer these questions in depth
 - How many tests are needed to find all bugs in the example?
-- What are the missing tests/bugs?
+- What are the missing tests you think would be good to add?
 - What is **good test data** for this example and why?
-- Should we test private methods?
-- Can all code be covered by code coverage?
-- What kind of "asserts" can be done in your testing framework?
-- What kind(s) of Code Coverage is shown in your code coverage tool?
-- Why is BugDoesNotHash easy to solve?
-
----
-
+- Can we and should we test private methods?
+- Can all code be covered by code coverage? Why not?
+- What kind of "asserts" can be done in your testing framework? Make a summary.
+- What kind(s) of Code Coverage is shown in your code coverage tool? What does it mean?
