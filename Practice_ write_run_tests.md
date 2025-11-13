@@ -6,10 +6,11 @@ We provide Java and .js code.
 
 ## Goals
 - Practice your ability to write simple unit tests in a framework.
-  - You should know how to writing unit tests
-  - You should know how to run tests and evaluate results
+  - You should know how to write unit tests for a function in a class.
+  - You should know how to run tests and evaluate results of the test-run.
   
-- Write minimal simple test-suites that accuratly pinpoints bugs
+- You should be able to write minimal simple test-suites that accuratly pinpoints bugs
+  - Know how which tests that can be removed
 - Practice running code coverage tool, and assess code coverage.
     - Find code not run during testing
 - Name tests to document requirements in the SUT
@@ -31,7 +32,9 @@ Write a test suite for the Password class provided.
    * None of the tests you write may fail for the correct version. 
    * For each buggy version your test suite should have at least one test that failes. 
    * Each test should fail for at least one buggy version which no other test fails, no redundant tests!
-   * Add a new buggy version that pass all your tests
+     * Example: Test A and B failes for the same buggs, so only one of them is needed
+ * Add a new buggy version of Password that pass all your tests.
+   * You dont need to write a test for this one. 
   
  * Artifacts to show during examination
    * Test suite as one file 
@@ -42,7 +45,7 @@ Write a test suite for the Password class provided.
    * Show summary as a table as below, showing coverage and pass/fail for all combinations of tests & correct and buggy versions.
    * Orally be able to answer questions about your code. All code must be fully understood.
    * Orally the reflection questions.
-   * Show the buggy version that pass all your tests
+   * Show the buggy version of Password you wrote that pass all your tests
 
 ### Table for checking test suite bug coverage
 Create a table like this one for all the bugs and Tests, showing which test fails or succeeds for each test and the coverage. Use the table to remove tests that are redundant.
@@ -64,7 +67,7 @@ During Examination you may be asked these or related questions. You should be ab
 - What is **good test data** for this example and why?
 - Can we and should we test private methods?
 - Can all code be covered by code coverage? Why not?
-- What kind of "asserts"/"expects" can be done in your testing framework? Make a summary.
+- What kind of "asserts"/"expects" can be done in your testing framework?
 - What kind(s) of Code Coverage is shown in your code coverage tool? What does it mean?
 - Why should a single test only have one assert/expect?
 

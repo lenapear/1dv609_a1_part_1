@@ -1,10 +1,15 @@
 # Practice Writing and Running Tests with mocks
+The previous task had private methods that normally cannot be tested directly. In this task we have extracted the private methods to a helper class where they are public. The two classes now needs to be tested in a way so that a failing test shows which of the classes that contains the bug. 
+
+Most of the assignment works as the previous practice "run test" but now we have two classes with a dependency. We want to test these classes independently.
+
+SwedishSecurityNumber depends on the class SSNHelper who holds all the validation methods. A test for SwedishSecurityNumber should only test functionality in the SwedishSecurityNumber class and not rely on SSNHelper. To accomplish this we can make use of "mocks". A mock is a configurable class instance that acts as a object of SSNHelper but we can control its output in the test.
+Jest have mocking built in while for Java you need to install mockito.
+
 
 ## Goals
-* Testing classes with dependencies
-* Run tests with mocks
-* Separate Testing of dependent classes for greater accuracy
-
+* You should be able to test classes with dependencies
+* You should be able to write tests with mocks
 
 ## Course material to support
 * Developer Testing - Chapter 7 - 13
@@ -14,10 +19,6 @@
 
 ## Task 2: Write an optimized test suite for two classes 
 
-Most of the assignment works as the previous practice "run test" but now we have two classes with a dependency. We want to test these classes independently.
-
-SwedishSecurityNumber depends on the class SSNHelper who holds all the validation methods. A test for SwedishSecurityNumber should only test functionality in the SwedishSecurityNumber class and not rely on SSNHelper. To accomplish this we can make use of "mocks". A mock is a configurable class instance that acts as a object of SSNHelper but we can control its output in the test.
-Jest have mocking built in while for Java you need to install mockito.
 
 * Write a test suite for SwedishSecurityNumber class and another for the SSNHelper class
 A bug in the SwedishSecurityNumber must not fail due to a bug in SSNHelper. 
