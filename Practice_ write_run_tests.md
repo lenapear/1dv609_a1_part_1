@@ -1,7 +1,7 @@
 # Practice Writing and Running Tests
 
-For this assignment you may select programming language, test framework, and code coverage tool. 
-We provide Java and .js code. 
+For this task you may select programming language, test framework, and code coverage tool. 
+We provide Java and .js code. You are responsible for knowing your programming language, your framework and other tools. 
 
 
 ## Goals
@@ -13,6 +13,7 @@ We provide Java and .js code.
   - Know how which tests that can be removed
 - Practice running code coverage tool, and assess code coverage.
     - Find code not run during testing
+    - know the differences between different code coverage measurements
 - Name tests to document requirements in the SUT
   - Follow the pattern [Function]Should[Expected behaviour]For[Stimuli] 
     - Java junit: constructorShouldThrowExceptionForShortPasswords()
@@ -30,8 +31,9 @@ Write a test suite for the Password class provided.
    * The correct version is defined as correct, and should not be changed.
    * The buggy versions should not be changed.
    * None of the tests you write may fail for the correct version. 
-   * For each buggy version your test suite should have at least one test that failes. 
-   * Each test should fail for at least one buggy version which no other test fails, no redundant tests!
+   * For each buggy version your test suite should have at least one test that failes.
+   * Each test should fail for at least one buggy version which no other test fails
+     * No redundant tests!
      * Example: Test A and B failes for the same buggs, so only one of them is needed
  * Add a new buggy version of Password that pass all your tests.
    * You dont need to write a test for this one. 
@@ -46,11 +48,12 @@ Write a test suite for the Password class provided.
    * Orally be able to answer questions about your code. All code must be fully understood.
    * Orally the reflection questions.
    * Show the buggy version of Password you wrote that pass all your tests
+   * Write a test for a unknown piece of code during examination. 
 
 ### Table for checking test suite bug coverage
-Create a table like this one for all the bugs and Tests, showing which test fails or succeeds for each test and the coverage. Use the table to remove tests that are redundant.
+Create a table like this one for all the bugs and Tests, showing which test fails or succeeds for each test and the coverage. Use the table to remove tests that are redundant. You may shorten the bug-names to get a slimmer table. 
 
-| Version | Correct | BugDoesNotHash | BugDoesNotTrim |  ... | MyCustomBug |
+| Version | Correct | BugDoesNotHash | NoTrim |  ... | MyCustomBug |
 | --- | ---| --- | --- | --- | --- |
 | Test name 1 | ✅ | ❌ | ✅ | ✅ | ✅ |
 | Test name 2 | ✅ | ✅ | ❌ | ✅ | ✅ |
@@ -58,16 +61,4 @@ Create a table like this one for all the bugs and Tests, showing which test fail
 | Coverage | 100% | 100% | 100% | 100% | 100% |
 
 
-### Reflection Questions
-
-During Examination you may be asked these or related questions. You should be able to answer these questions in depth. 
-
-- How many tests are needed to find all bugs in the example?
-- What are the missing tests you think would be good to add?
-- What is **good test data** for this example and why?
-- Can we and should we test private methods?
-- Can all code be covered by code coverage? Why not?
-- What kind of "asserts"/"expects" can be done in your testing framework?
-- What kind(s) of Code Coverage is shown in your code coverage tool? What does it mean?
-- Why should a single test only have one assert/expect?
 
