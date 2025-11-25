@@ -2,7 +2,7 @@
 // Select one of the Password versions to test
 
 // import { Password } from '../src/BugDoesNotHash' //✅
-// import { Password } from '../src/BugDoesNotTrim'
+// import { Password } from '../src/BugDoesNotTrim' //✅
 // import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
 // import { Password } from '../src/BugMissingPasswordCheck'
@@ -37,6 +37,13 @@ describe('Password class, test suite', () => {
     it('password Should Not Equal Input', () => {
         const pwd = new Password(nonHashedPassword)
         expect(pwd.getPasswordHash()).not.toBe(nonHashedPassword)
+    })
+
+    // fails BugDoesNotTrim
+    it('passwordWithSpace Should Be Equal to passwordWithoutSpace', () => {
+        const passwordWithSpace = new Password('sunghoonluvr123 ')
+        const passwordWithoutSpace = new Password('sunghoonluvr123')
+        expect(passwordWithSpace.isPasswordSame(passwordWithoutSpace)).toBe(true)
     })
 
 })
