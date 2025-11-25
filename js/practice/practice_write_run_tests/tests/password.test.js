@@ -3,7 +3,7 @@
 
 // import { Password } from '../src/BugDoesNotHash' //✅
 // import { Password } from '../src/BugDoesNotTrim' //✅
-// import { Password } from '../src/BugisPasswordAlwaysSame'
+ import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
 // import { Password } from '../src/BugMissingPasswordCheck'
 // import { Password } from '../src/BugNeverContainsNumbers' //✅
@@ -29,7 +29,7 @@ describe('Password class, test suite', () => {
     // to-do
 
     // fails BugNeverContainsNumbers
-    it('constructor Should Not Throw for Password Containing Number', () => {
+    it('constructor Should Not Throw For Password Containing Number', () => {
         expect(() => new Password(passwordContainingNumber)).not.toThrow()
     })
 
@@ -40,10 +40,17 @@ describe('Password class, test suite', () => {
     })
 
     // fails BugDoesNotTrim
-    it('passwordWithSpace Should Be Equal to passwordWithoutSpace', () => {
+    it('constructor Should Treat Trimmed And Untrimmed Password As Same', () => {
         const passwordWithSpace = new Password('sunghoonluvr123 ')
         const passwordWithoutSpace = new Password('sunghoonluvr123')
         expect(passwordWithSpace.isPasswordSame(passwordWithoutSpace)).toBe(true)
+    })
+
+    // fails BugisPasswordAlwaysSame
+    it('isPasswordSame Should Return False For Different Passwords', () => {
+        const passwordA = new Password('heeseungluvr123')
+        const passwordB = new Password('jayluvr123')
+        expect.passwordA.isPasswordSame(passwordB).toBe(true)
     })
 
 })
