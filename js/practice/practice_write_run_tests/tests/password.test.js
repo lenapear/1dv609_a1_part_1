@@ -49,7 +49,7 @@ describe('Password class, test suite', () => {
     // fails BugisPasswordAlwaysSame
     it('isPasswordSame Should Return False For Different Passwords', () => {
         const passwordA = new Password('heeseungluvr123')
-        const passwordB = new Password('jayluvr123')
+        const passwordB = new Password('jongseongluvr123')
         expect(passwordA.isPasswordSame(passwordB)).toBe(false)
     })
 
