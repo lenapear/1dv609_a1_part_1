@@ -5,7 +5,7 @@
 // import { Password } from '../src/BugDoesNotTrim' //✅
 // import { Password } from '../src/BugisPasswordAlwaysSame' //✅
 // import { Password } from '../src/BugMissingNumberCheck' //✅
-// import { Password } from '../src/BugMissingPasswordCheck'
+// import { Password } from '../src/BugMissingPasswordCheck' // ✅
 // import { Password } from '../src/BugNeverContainsNumbers' //✅
 // import { Password } from '../src/BugToShortPassword' //✅
 // import { Password } from '../src/BugVeryShort' //✅
@@ -20,7 +20,7 @@ describe('Password class, test suite', () => {
     const passwordContainingNumber = 'abcdefgh1234'
     const nonHashedPassword = 'sunooluvr123'
 
-    // fails BugWrongMessage + BugVeryShort, BugToShortPassword, bugNEverContainsNumbers
+    // fails BugWrongMessage, BugMissingPasswordCheck + BugVeryShort, BugToShortPassword, bugNeverContainsNumbers
     it('constructor Should Throw Correct Message for Too Short Password', () => {
         expect(() => new Password(tooShortPassword)).toThrow(correctMessage)
     })
