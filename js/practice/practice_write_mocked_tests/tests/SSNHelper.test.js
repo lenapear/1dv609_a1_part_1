@@ -1,11 +1,15 @@
-import { SSNHelper } from '../src/correct/SSNHelper'; 
+//import { SSNHelper } from '../src/correct/SSNHelper'
+// import { SSNHelper } from '../src/bugs/BuggySSNHelperIncorrectFormat' //✅
 
 
 
-describe('SSNHelpe Tests', () => {
+describe('SSNHelper Tests', () => {
 
-    test('replace this test with one of your own', () => {
-        expect(true).toBe(true);
+    // fails BuggySSNHelperIncorrectFormat
+    test('incorrectSSNFormat should return false for incorrect format input', () => {
+        const sut = new SSNHelper()
+        const incorrectSSNFormat = '0306247777'
+        expect(sut.isCorrectFormat(incorrectSSNFormat)).toBe(false);
     });
 
     //Add your tests here
