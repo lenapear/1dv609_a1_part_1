@@ -2,8 +2,7 @@
 //import { SSNHelper } from '../src/bugs/BuggySSNHelperIncorrectFormat' //✅
 //import { SSNHelper } from '../src/bugs/BuggySSNHelperAllowDayUpTo30' //✅
 //import { SSNHelper} from '../src/bugs/BuggySSNHelperAllowMonth0' //✅
-
-
+//import { SSNHelper } from "../src/bugs/BuggySSNHelperWrongLength" //✅
 
 describe('SSNHelper Tests', () => {
 
@@ -26,5 +25,12 @@ describe('SSNHelper Tests', () => {
         const sut = new SSNHelper()
         const invalidMonth = 0
         expect(sut.isValidMonth(invalidMonth)).toBe(false)
+    })
+
+    // fails BuggySSNHelperWrongLength
+    it('isCorrectLength should return false for invalid string length', () => {
+        const sut = new SSNHelper()
+        const invalidStringLength = '20030624-1111'
+        expect(sut.isCorrectLength(invalidStringLength)).toBe(false)
     })
 })
