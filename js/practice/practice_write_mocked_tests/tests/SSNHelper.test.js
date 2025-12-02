@@ -2,7 +2,8 @@
 //import { SSNHelper } from '../src/bugs/BuggySSNHelperIncorrectFormat' //✅
 //import { SSNHelper } from '../src/bugs/BuggySSNHelperAllowDayUpTo30' //✅
 //import { SSNHelper} from '../src/bugs/BuggySSNHelperAllowMonth0' //✅
-//import { SSNHelper } from "../src/bugs/BuggySSNHelperWrongLength" //✅
+//import { SSNHelper } from '../src/bugs/BuggySSNHelperWrongLength' //✅
+//import { SSNHelper } from '../src/bugs/BuggySSNHelperMessyLuhn' //✅
 
 describe('SSNHelper Tests', () => {
 
@@ -32,5 +33,12 @@ describe('SSNHelper Tests', () => {
         const sut = new SSNHelper()
         const invalidStringLength = '20030624-1111'
         expect(sut.isCorrectLength(invalidStringLength)).toBe(false)
+    })
+
+    // fails BuggySSNHelperMessyLuhn
+    it('luhnisCorrect should return true for valid checksum', () => {
+        const sut = new SSNHelper()
+        const validChecksum = '123455'
+        expect(sut.luhnisCorrect(validChecksum)).toBe(true)
     })
 })
