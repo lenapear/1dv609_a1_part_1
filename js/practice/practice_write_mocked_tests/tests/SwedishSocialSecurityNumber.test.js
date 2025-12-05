@@ -1,8 +1,8 @@
-import { jest } from '@jest/globals'
-//import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'
-//import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'
+import { expect, jest } from '@jest/globals'
+//import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoLuhn' //✅
 //import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberWrongYear' //✅
 //import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoTrim' //✅
+import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'
 
 
 //NOTE THESE TESTS SHOULD NOT BE DEPENDENT ON SSNHelper BUT USE MOCKING
@@ -33,7 +33,22 @@ describe('SwedishSocialSecurityNumber Tests', () => {
         }
         const ssnWithWhiteSpace = '990210-8767 '
         const correctSSN = '990210-8767'
-        const sut = new SwedishSocialSecurityNumber(ssnWithWhiteSpace, fakeHelper)
+        new SwedishSocialSecurityNumber(ssnWithWhiteSpace, fakeHelper)
         expect(fakeHelper.isCorrectFormat).toHaveBeenCalledWith(correctSSN)
     })
+
+    // fails NoLuhn
+    it('', () => {
+        const fakeHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(true),
+            isValidMonth: jest.fn().mockReturnValue(true),
+            isValidDay: jest.fn().mockReturnValue(true),
+            luhnisCorrect: jest.fn().mockReturnValue(false),
+        }
+        const incorrectLuhnSSN = '030706-7777'
+        expect(() => new SwedishSocialSecurityNumber(incorrectLuhnSSN, fakeHelper)).toThrow("Invalid SSN according to Luhn's algorithm")
+    })
+
+    // fails NoLenCHeck
 })
