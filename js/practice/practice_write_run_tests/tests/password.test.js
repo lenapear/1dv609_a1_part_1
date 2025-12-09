@@ -5,13 +5,13 @@
 //import { Password } from '../src/BugDoesNotTrim' //✅
 //import { Password } from '../src/BugisPasswordAlwaysSame' //✅
 //import { Password } from '../src/BugMissingNumberCheck' //✅
-//import { Password } from '../src/BugMissingPasswordCheck' // ✅
-//import { Password } from '../src/BugNeverContainsNumbers' //✅
-//import { Password } from '../src/BugToShortPassword' //✅
+//import { Password } from '../src/BugMissingPasswordCheck' // ❌
+//import { Password } from '../src/BugNeverContainsNumbers' //❌
+//import { Password } from '../src/BugToShortPassword' //❌
 //import { Password } from '../src/BugVeryShort' //✅
-//import { Password } from '../src/BugWrongHashingAlgorithm'
+import { Password } from '../src/BugWrongHashingAlgorithm' //✅
 //import { Password } from '../src/BugWrongMessage' //✅
-import { Password } from '../src/Correct'
+//import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     const tooShortPassword = 'abcde123'
@@ -20,51 +20,57 @@ describe('Password class, test suite', () => {
     const nonHashedPassword = 'sunooluvr123'
 
     // BugWrongMessage, BugMissingPasswordCheck + BugVeryShort, BugToShortPassword, bugNeverContainsNumbers
-    it('constructor Should Throw Correct Message for Too Short Password', () => {
+    it('constructor ShouldThrowCorrectMessageForTooShortPassword', () => {
         expect(() => new Password(tooShortPassword)).toThrow(correctMessage)
     })
 
     // BugVeryShort & BugToShortPassword
-    it('constructor should Throw for Invalid Password Length ', () => {
+    it('constructor ShouldThrowForInvalidPasswordLength ', () => {
         expect(() => new Password(tooShortPassword)).toThrow()
     })
 
     // BugNeverContainsNumbers
-    it('constructor Should Not Throw For Password Containing Number', () => {
+    it('constructor ShouldNotThrowForPasswordContainingNumber', () => {
         expect(() => new Password(passwordContainingNumber)).not.toThrow()
     })
 
     // BugDoesNotHash
-    it('password Should Not Equal Input', () => {
+    it('password ShouldNotEqualInput', () => {
         const pwd = new Password(nonHashedPassword)
         expect(pwd.getPasswordHash()).not.toBe(nonHashedPassword)
     })
 
+    // BugWrongHashingAlgorithm
+    it('getPasswordHash ShouldReturnExpectedHashForKnownPassword', () => {
+        const pwd = new Password('abcdefgh1234')
+        expect(pwd.getPasswordHash()).toBe(8061291001638646000)
+    })
+
+
     // BugDoesNotTrim
-    it('constructor Should Treat Trimmed And Untrimmed Password As Same', () => {
+    it('constructor ShouldTreatTrimmedAndUntrimmedPasswordAsSame', () => {
         const passwordWithSpace = new Password('sunghoonluvr123 ')
         const passwordWithoutSpace = new Password('sunghoonluvr123')
         expect(passwordWithSpace.isPasswordSame(passwordWithoutSpace)).toBe(true)
     })
 
     // BugisPasswordAlwaysSame
-    it('isPasswordSame Should Return False For Different Passwords', () => {
+    it('isPasswordSame ShouldReturnFalseForDifferentPasswords', () => {
         const passwordA = new Password('heeseungluvr123')
         const passwordB = new Password('jongseongluvr123')
         expect(passwordA.isPasswordSame(passwordB)).toBe(false)
     })
 
     // BugMissingNumberCheck
-    it('constructor Should Throw for Password Without Number', () => {
+    it('constructor ShouldThrowForPasswordWithoutNumber', () => {
         const passwordWithoutNumber = 'ilovekimsunoosomuch'
         expect(() => new Password(passwordWithoutNumber)).toThrow()
     })
 
     // TESTS for higher coverage & not provided bugs
-    it('isPasswordSame Should Throw Invalid Argument For Invalid Password Input', () => {
+    it('isPasswordSame ShouldThrowInvalidArgumentForInvalid PasswordInput', () => {
         const validPassword = new Password('abcdefgh12345')
         const notAPassword = 'not-a-password-object'
-
         expect(() => validPassword.isPasswordSame(notAPassword)).toThrow('Invalid argument')
     })
 })
