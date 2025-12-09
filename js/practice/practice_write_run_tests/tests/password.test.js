@@ -7,26 +7,32 @@
 //import { Password } from '../src/BugMissingNumberCheck' //✅
 //import { Password } from '../src/BugMissingPasswordCheck' // ❌
 //import { Password } from '../src/BugNeverContainsNumbers' //❌
-//import { Password } from '../src/BugToShortPassword' //❌
+import { Password } from '../src/BugToShortPassword' //❌
 //import { Password } from '../src/BugVeryShort' //✅
-import { Password } from '../src/BugWrongHashingAlgorithm' //✅
+//import { Password } from '../src/BugWrongHashingAlgorithm' //✅
 //import { Password } from '../src/BugWrongMessage' //✅
 //import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     const tooShortPassword = 'abcde123'
+    const boundaryTooShortPassword = 'abcdefgh123'
     const correctMessage = 'Too short password'
     const passwordContainingNumber = 'abcdefgh1234'
     const nonHashedPassword = 'sunooluvr123'
 
-    // BugWrongMessage, BugMissingPasswordCheck + BugVeryShort, BugToShortPassword, bugNeverContainsNumbers
+    // BugWrongMessage
     it('constructor ShouldThrowCorrectMessageForTooShortPassword', () => {
         expect(() => new Password(tooShortPassword)).toThrow(correctMessage)
     })
 
-    // BugVeryShort & BugToShortPassword
+    // BugVeryShort
     it('constructor ShouldThrowForInvalidPasswordLength ', () => {
         expect(() => new Password(tooShortPassword)).toThrow()
+    })
+
+    // BugToShortPassword
+    it('constructor ShouldThrowTooShortForPasswordOfLength11', () => {
+        expect(() => new Password(boundaryTooShortPassword)).toThrow(correctMessage)
     })
 
     // BugNeverContainsNumbers
