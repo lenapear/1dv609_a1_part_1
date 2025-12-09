@@ -65,6 +65,6 @@ describe('Password class, test suite', () => {
         const validPassword = new Password('abcdefgh12345')
         const notAPassword = 'not-a-password-object'
 
-        expect(validPassword.isPasswordSame(notAPassword)).toThrow('Invalid argument')
+        expect(() => validPassword.isPasswordSame(notAPassword)).toThrow('Invalid argument')
     })
 })
