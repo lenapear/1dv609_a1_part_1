@@ -22,21 +22,33 @@ describe('SSNHelper Tests', () => {
     })
 
     // fails BuggySSNHelperAllowMonth0
-    it('isValidMonth should return false for invalid month', () => {
+    it('isValidMonth ShouldReturnFalseForInvalidMonth', () => {
         const sut = new SSNHelper()
         const invalidMonth = 0
         expect(sut.isValidMonth(invalidMonth)).toBe(false)
     })
 
+    it('isValidMonth ShouldReturnTrueForValidMonth', () => {
+        const sut = new SSNHelper()
+        const validMonth = '05'
+        expect(sut.isValidMonth(validMonth)).toBe(true)
+    })
+
     // fails BuggySSNHelperWrongLength
-    it('isCorrectLength should return false for invalid string length', () => {
+    it('isCorrectLength ShouldReturnFalseForInvalidStringLength', () => {
         const sut = new SSNHelper()
         const invalidStringLength = '20030624-1111'
         expect(sut.isCorrectLength(invalidStringLength)).toBe(false)
     })
 
+    it('isCorrectLength ShouldReturnTrueForValidLength11', () => {
+        const sut = new SSNHelper()
+        const validLength = '030624-7777'
+        expect(sut.isCorrectLength(validLength)).toBe(true)
+    })
+
     // fails BuggySSNHelperMessyLuhn
-    it('luhnisCorrect should return true for valid checksum', () => {
+    it('luhnisCorrect ShouldReturnTrueForValidChecksum', () => {
         const sut = new SSNHelper()
         const validChecksum = '123455'
         expect(sut.luhnisCorrect(validChecksum)).toBe(true)
