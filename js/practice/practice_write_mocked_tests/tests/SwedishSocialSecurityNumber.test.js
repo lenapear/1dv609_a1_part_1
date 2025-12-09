@@ -52,7 +52,7 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     })
 
     // fails NoLenCheck
-    it('', () => {
+    it('constructor should throw for SSN with incorrect length', () => {
         const fakeHelper = {
             isCorrectLength: jest.fn().mockReturnValue(false),
             isCorrectFormat: jest.fn().mockReturnValue(true),
@@ -63,5 +63,8 @@ describe('SwedishSocialSecurityNumber Tests', () => {
         const incorrectLengthSSN = '030706'
         expect(() => new SwedishSocialSecurityNumber(incorrectLengthSSN, fakeHelper)).toThrow("To short, must be 11 characters")
     })
+
+    // TEST for higher coverage & not for provided bugs
+
 
 })
