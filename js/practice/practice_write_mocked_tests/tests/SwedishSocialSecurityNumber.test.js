@@ -1,9 +1,9 @@
 import { expect, jest } from '@jest/globals'
 //import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoLuhn' //✅
 //import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberWrongYear' //✅
-//import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoTrim' //✅
+import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoTrim' //✅
 //import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoLenCheck' //✅
-import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'
+//import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'
 
 
 //NOTE THESE TESTS SHOULD NOT BE DEPENDENT ON SSNHelper BUT USE MOCKING
@@ -52,7 +52,7 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     })
 
     // fails NoLenCheck
-    it('constructor should throw for SSN with incorrect length', () => {
+    it('constructor ShouldThrowForSSNWithIncorrectLength', () => {
         const fakeHelper = {
             isCorrectLength: jest.fn().mockReturnValue(false),
             isCorrectFormat: jest.fn().mockReturnValue(true),
@@ -77,7 +77,7 @@ describe('SwedishSocialSecurityNumber Tests', () => {
         expect(() => new SwedishSocialSecurityNumber(invalidFormat, fakeHelper)).toThrow('Incorrect format, must be: YYMMDD-XXXX')
     })
 
-    it('constructor shouldThrowInvalidMonthForInvalidMonthFromHelper', () => {
+    it('constructor ShouldThrowInvalidMonthForInvalidMonthFromHelper', () => {
         const fakeHelper = {
             isCorrectLength: jest.fn().mockReturnValue(true),
             isCorrectFormat: jest.fn().mockReturnValue(true),
