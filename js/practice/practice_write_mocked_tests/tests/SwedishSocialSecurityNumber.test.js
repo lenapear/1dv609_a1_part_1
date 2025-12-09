@@ -11,7 +11,7 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     //put constants here to increase readability
 
     // fails WrongYear
-    it('getYear should return correct year for valid SSN', () => {
+    it('getYear ShouldReturnCorrectYearForValidSSN', () => {
         const fakeHelper = {
             isCorrectLength: jest.fn().mockReturnValue(true),
             isCorrectFormat: jest.fn().mockReturnValue(true),
@@ -24,7 +24,7 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     })
 
     // fails NoTrim
-    it('constructor should call isCorrectFormat with trimmedSSN', () => {
+    it('constructor ShouldCallisCorrectFormatWithTrimmedSSN', () => {
         const fakeHelper = {
             isCorrectLength: jest.fn().mockReturnValue(true),
             isCorrectFormat: jest.fn().mockReturnValue(true),
@@ -39,7 +39,7 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     })
 
     // fails NoLuhn
-    it('constructor should throw if SSN has incorrect luhn', () => {
+    it('constructor ShouldThrowIfSSNHasIncorrectLuhn', () => {
         const fakeHelper = {
             isCorrectLength: jest.fn().mockReturnValue(true),
             isCorrectFormat: jest.fn().mockReturnValue(true),
@@ -65,6 +65,83 @@ describe('SwedishSocialSecurityNumber Tests', () => {
     })
 
     // TEST for higher coverage & not for provided bugs
+    it('constructor ShouldThrowIncorrectFormatForInvalidFormat', () => {
+        const fakeHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(false),
+            isValidMonth: jest.fn(),
+            isValidDay: jest.fn(),
+            luhnisCorrect: jest.fn(),  
+        }
+        const invalidFormat = '0306247777'
+        expect(() => new SwedishSocialSecurityNumber(invalidFormat, fakeHelper)).toThrow('Incorrect format, must be: YYMMDD-XXXX')
+    })
 
+    it('constructor shouldThrowInvalidMonthForInvalidMonthFromHelper', () => {
+        const fakeHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(true),
+            isValidMonth: jest.fn().mockReturnValue(false),
+            isValidDay: jest.fn(),
+            luhnisCorrect: jest.fn(),
+        }
+        const ssn = '991315-1234'
 
+        expect(() => new SwedishSocialSecurityNumber(ssn, fakeHelper)).toThrow('Invalid month in SSN')
+    })
+
+    it('constructor shouldThrowInvalidDayForInvalidDayFromHelper', () => {
+        const fakeHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(true),
+            isValidMonth: jest.fn().mockReturnValue(true),
+            isValidDay: jest.fn().mockReturnValue(false),
+            luhnisCorrect: jest.fn(),
+        }
+        const ssn = '991035-1234'
+
+        expect(() => new SwedishSocialSecurityNumber(ssn, fakeHelper)).toThrow('Invalid day in SSN')
+    })
+
+    it('getMonth ShouldReturnMonthFromSsn', () => {
+        const fakeHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(true),
+            isValidMonth: jest.fn().mockReturnValue(true),
+            isValidDay: jest.fn().mockReturnValue(true),
+            luhnisCorrect: jest.fn().mockReturnValue(true),
+        }
+
+        const sut = new SwedishSocialSecurityNumber('011015-7777', fakeHelper)
+
+        expect(sut.getMonth()).toBe('10')
+        })
+
+    it('getDay ShouldReturnDayFromSsn', () => {
+    const fakeHelper = {
+        isCorrectLength: jest.fn().mockReturnValue(true),
+        isCorrectFormat: jest.fn().mockReturnValue(true),
+        isValidMonth: jest.fn().mockReturnValue(true),
+        isValidDay: jest.fn().mockReturnValue(true),
+        luhnisCorrect: jest.fn().mockReturnValue(true),
+    }
+
+    const sut = new SwedishSocialSecurityNumber('011015-7777', fakeHelper)
+
+    expect(sut.getDay()).toBe('15')
+    })
+
+    it('getSerialNumber ShouldReturnSerialFromSsn', () => {
+    const fakeHelper = {
+        isCorrectLength: jest.fn().mockReturnValue(true),
+        isCorrectFormat: jest.fn().mockReturnValue(true),
+        isValidMonth: jest.fn().mockReturnValue(true),
+        isValidDay: jest.fn().mockReturnValue(true),
+        luhnisCorrect: jest.fn().mockReturnValue(true),
+    }
+
+    const sut = new SwedishSocialSecurityNumber('011015-7777', fakeHelper)
+
+    expect(sut.getSerialNumber()).toBe('7777')
+    })
 })

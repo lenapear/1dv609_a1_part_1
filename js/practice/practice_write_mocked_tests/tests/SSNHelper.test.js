@@ -8,14 +8,14 @@ import { SSNHelper } from '../src/correct/SSNHelper'
 describe('SSNHelper Tests', () => {
 
     // fails BuggySSNHelperIncorrectFormat
-    it('incorrectSSNFormat should return false for incorrect format input', () => {
+    it('incorrectSSNFormat ShouldReturnFalseForIncorrectFormatInput', () => {
         const sut = new SSNHelper()
         const incorrectSSNFormat = '0306247777'
         expect(sut.isCorrectFormat(incorrectSSNFormat)).toBe(false)
     })
 
     // fails BuggySSNHelperAllowDayUpTo30
-    it('isValidDay should return true for days up until 31', () => {
+    it('isValidDay ShouldReturnTrueForDaysUpUntil31', () => {
         const sut = new SSNHelper()
         const dayString = '31'
         expect(sut.isValidDay(dayString)).toBe(true)
